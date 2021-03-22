@@ -6,34 +6,34 @@
 	<title>DUP Allumini Networking Map</title>
 	<link rel="icon" type="image/png" href="assets/images/dup.png">
 	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+	<!--Mapbox -->
 	<link href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css" rel="stylesheet">
 	<script src="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js"></script>
+	<!-- Geocoder -->
 	<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
 	<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css" type="text/css">
-	<!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
+	<!-- Cross browser config -->
 	<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
 	<link rel="stylesheet" href="assets/css/main.css">
 </head>
 
 <body>
-	<div id="map"></div>
-	<svg id="my_dataviz" width="100%" height="100%"></svg>
-	<div id="toggle">
-		<h3 style="font-family:fantasy;text-align:center;"> FILTERS </h3>
-
-		<select id="course" name="course" onchange="filterCourse()">
+	<div id="toggle" style="display:inline-block">
+		<select id="course" name="course" onchange="filterCourse()" style="margin-top:5%;width: 80%">";
+    height: 20%;>
 			<option value="0">All programmes</option>
-		  <option value="1">MSc Building and Urban Design in Development</option>
-		  <option value="2">MSc Development Administration and Planning</option>
-		  <option value="3">MSc Environment and Sustainable Development</option>
-		  <option value="4">MSc Health in Urban Development</option>
+			<option value="1">MSc Building and Urban Design in Development</option>
+			<option value="2">MSc Development Administration and Planning</option>
+			<option value="3">MSc Environment and Sustainable Development</option>
+			<option value="4">MSc Health in Urban Development</option>
 			<option value="5">MSc Social Development Practice</option>
 			<option value="6">MSc Urban Development Planning</option>
 			<option value="7">MSc Urban Economic Development</option>
 		</select>
 </br>
-		<select id="year" name="year" onchange="filterCourse()" style="margin-top:5%;">
+		<select id="year" name="year" onchange="filterCourse()" style="margin-top:5%;width: 30%;
+    height: 20%;">
 			<option value="0">All Years</option>
 			<option value="1">2012/2013</option>
 			<option value="2">2013/2014</option>
@@ -44,29 +44,10 @@
 			<option value="7">2020/2021</option>
 		</select>
 	</div>
+	<div id="geocoder" class="geocoder"></div>
+	<div id="map"></div>
+	<svg id="my_dataviz" width="100%" height="100%"></svg>
 
 </body>
 <script type="text/javascript" src="assets/js/map.js"></script>
-<script>
-function filterCourse() {
-  var x = document.getElementById("course").value;
-  if (x == "1") {
-    map.setFilter('clusters', ['==', ['get', 'course_title'], 'MSc Building and Urban Design in Development']);
-  } else if (x == "2") {
-    map.setFilter('clusters', ['==', ['get', 'course_title'], 'MSc Development Administration and Planning']);
-  } else if (x == "3") {
-    map.setFilter('clusters', ['==', ['get', 'course_title'], 'MSc Environment and Sustainable Development']);
-  } else if (x == "4") {
-    map.setFilter('clusters', ['==', ['get', 'course_title'], 'MSc Health in Urban Development']);
-  } else if (x == "5") {
-    map.setFilter('clusters', ['==', ['get', 'course_title'], 'MSc Social Development Practice']);
-  } else if (x == "6") {
-    map.setFilter('clusters', ['==', ['get', 'course_title'], 'MSc Urban Development Planning']);
-  } else if (x == "7") {
-    map.setFilter('clusters', ['==', ['get', 'course_title'], 'MSc Urban Economic Development']);
-  } else {
-    map.setFilter('clusters', ['!=', ['get', 'course_title'], 'random']);
-  }
-}
-</script>
 </html>
