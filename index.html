@@ -19,21 +19,19 @@
 </head>
 
 <body>
-	<div id="toggle" style="display:inline-block">
-		<select id="course" name="course" onchange="filterCourse()" style="margin-top:5%;width: 80%">";
-    height: 20%;>
-			<option value="0">All programmes</option>
+	<div id="toggle">
+		<select id="course" name="course" onchange="filterCourse()">
+			<option value="All programmes">All programmes</option>
 			<option value="1">MSc Building and Urban Design in Development</option>
-			<option value="2">MSc Development Administration and Planning</option>
-			<option value="3">MSc Environment and Sustainable Development</option>
-			<option value="4">MSc Health in Urban Development</option>
-			<option value="5">MSc Social Development Practice</option>
-			<option value="6">MSc Urban Development Planning</option>
-			<option value="7">MSc Urban Economic Development</option>
+			<option value="MSc Development Administration and Planning">MSc Development Administration and Planning</option>
+			<option value="MSc Environment and Sustainable Development">MSc Environment and Sustainable Development</option>
+			<option value="MSc Health in Urban Development">MSc Health in Urban Development</option>
+			<option value="MSc Social Development Practice">MSc Social Development Practice</option>
+			<option value="MSc Urban Development Planning">MSc Urban Development Planning</option>
+			<option value="MSc Urban Economic Development">MSc Urban Economic Development</option>
 		</select>
-</br>
-		<select id="year" name="year" onchange="filterCourse()" style="margin-top:5%;width: 30%;
-    height: 20%;">
+		</br>
+		<select id="year" name="year" onchange="filterCourse()">
 			<option value="0">All Years</option>
 			<option value="1">2012/2013</option>
 			<option value="2">2013/2014</option>
@@ -50,4 +48,5 @@
 
 </body>
 <script type="text/javascript" src="assets/js/map.js"></script>
+
 </html>

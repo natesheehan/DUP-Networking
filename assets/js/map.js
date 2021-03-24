@@ -1,9 +1,9 @@
 	mapboxgl.accessToken = 'pk.eyJ1IjoibmF0aGFuYWVsaXNhbWFwcGVyIiwiYSI6ImNrODNiZzdoZTA4Y2gzZ281YmJiMHNwOWIifQ.d2ntY86sJ7DR7011dUJ2cw';
 	var map = new mapboxgl.Map({
 	  container: 'map',
-	  style: 'mapbox://styles/mapbox/dark-v10',
+	  style: 'mapbox://styles/nathanaelisamapper/ckmnjugpl4naj17oaqao65i0o',
 	  center: [0, 0],
-	  zoom: 1
+	  zoom: 2
 	});
 
 	var geocoder = new MapboxGeocoder({
@@ -83,35 +83,51 @@
 	    'circle-stroke-color': '#fff'
 	  }
 	});
-
-	map.addSource('route', {
-		'type': 'geojson',
-		'data': {
-			'type': 'Feature',
-			'properties': {},
-			'geometry': {
-				'type': 'LineString',
-				'coordinates': [
-					[11.5429503873952, 49.2029999478672],
-					[121.4737, 31.230]
-				]
-			}
-		}
-	});
-	map.addLayer({
-		'id': 'route',
-		'type': 'line',
-		'source': 'route',
-		'layout': {
-			'line-join': 'round',
-			'line-cap': 'round'
-		},
-		'paint': {
-			'line-color': '#e421bc',
-			'line-width': 4
-		}
-	});
+	//
+	// map.addSource('route', {
+	// 	'type': 'geojson',
+	// 	'data': {
+	// 		'type': 'Feature',
+	// 		'properties': {},
+	// 		'geometry': {
+	// 			'type': 'LineString',
+	// 			'coordinates': [
+	// 				[11.5429503873952, 49.2029999478672],
+	// 				[121.4737, 31.230]
+	// 			]
+	// 		}
+	// 	}
+	// });
+	// map.addLayer({
+	// 	'id': 'route',
+	// 	'type': 'line',
+	// 	'source': 'route',
+	// 	'layout': {
+	// 		'line-join': 'round',
+	// 		'line-cap': 'round'
+	// 	},
+	// 	'paint': {
+	// 		'line-color': '#e421bc',
+	// 		'line-width': 4
+	// 	}
+	// });
 });
+
+function filterCourse() {
+	course_title = document.getElementById('course').value
+  filters = ['==', 'course_title', course_title];
+
+	if (course_title == 1) {
+		map.setFilter('clusters', ['==', ['get','course_title'], "MSc Building and Urban Design in Development"]);
+		map.setFilter('cluster-count', ['==', ['get','course_title'], "MSc Building and Urban Design in Development"]);
+		map.setFilter('unclustered-point', ['==', ['get','course_title'], "MSc Building and Urban Design in Development"]);
+	} else {
+		map.setFilter('clusters', ['!=', ['get', 'course_title'], 'random']);
+		map.setFilter('unclustered-point', ['!=', ['get', 'course_title'], 'random']);
+		map.setFilter('cluster-count', ['!=', ['get', 'course_title'], 'random']);
+	}
+
+}
 
 	// inspect a cluster on click
 	map.on('click', 'clusters', function(e) {
@@ -171,34 +187,34 @@
 	map.getCanvas().style.cursor = '';
 	});
 
-	function filterCourse() {
-	  var x = document.getElementById("course").value;
-		console.log(x)
-	  if (x == 1) {
-	    map.setFilter('unclustered-point', ['==', ['get', 'course_title'], 'MSc Building and Urban Design in Development']);
-			map.setFilter('clusters', ['==', ['get', 'course_title'], 'MSc Building and Urban Design in Development']);
-	  } else if (x == 2) {
-	    map.setFilter('unclustered-point', ['==', ['get', 'course_title'], 'MSc Development Administration and Planning']);
-			map.setFilter('clusters', ['==', ['get', 'course_title'], 'MSc Development Administration and Planning']);
-	  } else if (x == 3) {
-	    map.setFilter('unclustered-point', ['==', ['get', 'course_title'], 'MSc Environment and Sustainable Development']);
-			map.setFilter('clusters', ['==', ['get', 'course_title'], 'MSc Environment and Sustainable Development']);
-	  } else if (x == 4) {
-	    map.setFilter('unclustered-point', ['==', ['get', 'course_title'], 'MSc Health in Urban Development']);
-			map.setFilter('clusters', ['==', ['get', 'course_title'], 'MSc Health in Urban Development']);
-	  } else if (x == 5) {
-	    map.setFilter('unclustered-point', ['==', ['get', 'course_title'], 'MSc Social Development Practice']);
-			map.setFilter('clusters', ['==', ['get', 'course_title'], 'MSc Social Development Practice']);
-	  } else if (x == 6) {
-	    map.setFilter('unclustered-point', ['==', ['get', 'course_title'], 'MSc Urban Development Planning']);
-			map.setFilter('clusters', ['==', ['get', 'course_title'], 'MSc Urban Development Planning']);
-	  } else if (x == 7) {
-	    map.setFilter('unclustered-point', ['==', ['get', 'course_title'], 'MSc Urban Economic Development']);
-			map.setFilter('clusters', ['==', ['get', 'course_title'], 'MSc Urban Economic Development']);
-	  } else if (x == 0){
-	    map.setFilter('unclustered-point', ['!=', ['get', 'course_title'], 'random']);
-			map.setFilter('clusters', ['!=', ['get', 'course_title'], 'random']);
-	  } else {
-			print("oops")
-		}
-	}
+
+	// function filterCourse() {
+	//   var x = document.getElementById("course").value;
+	// 	console.log(x)
+	//   if (x == "1") {
+	//     map.setFilter('unclustered-point', ['==', ['get', 'course_title'], 'MSc Building and Urban Design in Development']);
+	// 		map.setFilter('clusters', ['==', ['get', 'course_title'], 'MSc Building and Urban Design in Development']);
+	//   } else if (x == "2") {
+	//     map.setFilter('unclustered-point', ['==', ['get', 'course_title'], 'MSc Development Administration and Planning']);
+	// 		map.setFilter('clusters', ['==', ['get', 'course_title'], 'MSc Development Administration and Planning']);
+	//   } else if (x == "3") {
+	//     map.setFilter('unclustered-point', ['==', ['get', 'course_title'], 'MSc Environment and Sustainable Development']);
+	// 		map.setFilter('clusters', ['==', ['get', 'course_title'], 'MSc Environment and Sustainable Development']);
+	//   } else if (x == "4") {
+	//     map.setFilter('unclustered-point', ['==', ['get', 'course_title'], 'MSc Health in Urban Development']);
+	// 		map.setFilter('clusters', ['==', ['get', 'course_title'], 'MSc Health in Urban Development']);
+	//   } else if (x == "5") {
+	//     map.setFilter('unclustered-point', ['==', ['get', 'course_title'], 'MSc Social Development Practice']);
+	// 		map.setFilter('clusters', ['==', ['get', 'course_title'], 'MSc Social Development Practice']);
+	//   } else if (x == "6") {
+	//     map.setFilter('unclustered-point', ['==', ['get', 'course_title'], 'MSc Urban Development Planning']);
+	// 		map.setFilter('clusters', ['==', ['get', 'course_title'], 'MSc Urban Development Planning']);
+	//   } else if (x == "7") {
+	//     map.setFilter('unclustered-point', ['==', ['get', 'course_title'], 'MSc Urban Economic Development']);
+	// 		map.setFilter('clusters', ['==', ['get', 'course_title'], 'MSc Urban Economic Development']);
+	//   } else if (x == "0"){
+	// 		map.setFilter('clusters', ['!=', ['get', 'course_title'], 'random']);
+	//   } else {
+	// 		print("oops")
+	// 	}
+	// }
